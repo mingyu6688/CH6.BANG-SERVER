@@ -295,8 +295,7 @@ message GamePacket {
         S2CLoginResponse loginResponse = 4;
 
         // 방 생성
-        C2SCreate
-        Request createRoomRequest = 5;
+        C2SCreateRoomRequest createRoomRequest = 5;
         S2CCreateRoomResponse createRoomResponse = 6;
 
         // 방 목록 조회
@@ -380,11 +379,6 @@ message GamePacket {
     }
 }
 
-
-/* 
-    실패 코드
-*/
-
 enum WarningType {
     NO_WARNING = 0;
     BOMB_WANING = 1;
@@ -462,7 +456,6 @@ enum RoleType {
     HITMAN = 3;
     PSYCHOPATH = 4;
 }
-
 
 enum RoomStateType {
     WAIT = 0;
