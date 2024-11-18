@@ -28,10 +28,8 @@ const getAllProtoFiles = (protoFolder, fileList = []) => {
 const protoFiles = getAllProtoFiles(protoFolder);
 
 const protoMessages = {};
+export let roomStateType = null;
 
-/**
- * protoMessages에 가져온 protoFiles를 등록하는 함수
- */
 export const loadProtos = async () => {
   try {
     const root = new protobuf.Root();
@@ -52,6 +50,11 @@ export const loadProtos = async () => {
           protoMessages[packageName][protoType] = root.lookupEnum(typeName);
         }
       }
+
+    }
+
+    roomStateType = root.lookupEnum('packets.RoomStateType').values;
+    // console.log(roomStateType.WAIT);
     }
 
     console.log(`프로토 타입 로드에 끝났습니다.`);

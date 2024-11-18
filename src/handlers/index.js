@@ -1,17 +1,35 @@
 import HANDLER_IDS from '../constants/handlerIds.js';
-import { PACKET_TYPE_NAMES } from '../constants/packetTypes.js';
-import { CustomError } from '../error/customError.js';
-import { ErrorCodes } from '../error/errorCodes.js';
 import registerHandler from './auth/register.handler.js';
+import loginHandler from './auth/login.handler.js';
+import getRoomListHandler from './lobby/getRoomList.handler.js';
+import createRoomHandler from './lobby/createRoom.handler.js';
+import joinRoomHandler from './lobby/joinRoom.handler.js';
+import joinRandomRoomHandler from './lobby/joinRandomRoom.handler.js';
 const packetTypes = {
   [HANDLER_IDS.REGISTER_REQUEST]: {
     packetType: registerHandler,
     protoType: 'C2SRegisterRequest',
   },
   [HANDLER_IDS.LOGIN_REQUEST]: {
-    packetType: undefined,
+    packetType: loginHandler,
     protoType: 'C2SLoginRequest',
   },
+  [HANDLER_IDS.CREATE_ROOM_REQUEST]: {
+    packetType: createRoomHandler,
+    protoType: 'C2SCreateRoomRequest',
+  },
+  [HANDLER_IDS.GET_ROOM_LIST_REQUEST]: {
+    packetType: getRoomListHandler,
+    protoType: 'C2SGetRoomListRequest',
+  },
+  [HANDLER_IDS.JOIN_ROOM_REQUEST]: {
+    packetType: joinRoomHandler,
+    protoType: 'C2SJoinRoomRequest',
+  },
+  [HANDLER_IDS.JOIN_RANDOM_ROOM_REQUEST]: {
+    packetType: joinRandomRoomHandler,
+    protoType: 'C2SJoinRandomRoomRequest',
+  }
 };
 /**
  * 패킷타입에 맞는 핸들러로 분배해주는 함수
