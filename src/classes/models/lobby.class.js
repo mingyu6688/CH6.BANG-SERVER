@@ -1,3 +1,4 @@
+import { removeRoomSession } from '../../session/room.session.js';
 import { getUserById } from '../../session/user.session.js';
 import IntervalManager from '../managers/interval.manager.js';
 const LOBBY_MAX_PLAYERS = 50;
@@ -39,6 +40,11 @@ class Lobby {
   // 지금은 lobby에서 제거하는 방식으로 구현해놨음.
   removeUser(userId) {
     this.users = this.users.filter((user) => user.id !== userId);
+  }
+
+  removeRoom(roomId) {
+    this.rooms = this.rooms.filter((room) => room.id !== roomId);
+    removeRoomSession(roomId);
   }
 }
 
