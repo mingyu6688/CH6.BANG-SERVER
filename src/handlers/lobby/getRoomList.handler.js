@@ -9,17 +9,22 @@ const getRoomListHandler = async ({ socket, payload }) => {
   // 로비가 가지고 있는 게임 룸 정보가 필요하다
   const user = getUserBySocket(socket);
   const userId = user.id;
-
+  // console.log(user);
   // 유저를 갖고 있는 로비가 가진 게임 룸
-  // const lobbySessions = getLobbySessions();
+
   // console.log('1');
   // console.log(lobbySessions);
   // 유저가 있는 로비
   // lobby.users 안에 있는 오브젝트 
-  // const lobbySession = lobbySessions.find((lobby) => 
+  // const lobbySessions = getLobbySessions();
+  // const thisLobby = lobbySessions.find((lobby) => 
   //   lobby.users.find((user) => user.id === userId));
 
+  // console.log(getLobbySessions());
+  // console.log(getRoomSessions());
   const thisLobby = getLobbyByUserId(userId);
+
+  // console.log(thisLobby);
   // console.log('2');
   // console.log(lobbySession);
   // 로비에 속한 방들의 정보를 모음

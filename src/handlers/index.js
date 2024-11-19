@@ -5,6 +5,7 @@ import getRoomListHandler from './lobby/getRoomList.handler.js';
 import createRoomHandler from './lobby/createRoom.handler.js';
 import joinRoomHandler from './lobby/joinRoom.handler.js';
 import joinRandomRoomHandler from './lobby/joinRandomRoom.handler.js';
+import leaveRoomHandler from './lobby/leaveRoom.handler.js';
 const packetTypes = {
   [HANDLER_IDS.REGISTER_REQUEST]: {
     packetType: registerHandler,
@@ -29,7 +30,11 @@ const packetTypes = {
   [HANDLER_IDS.JOIN_RANDOM_ROOM_REQUEST]: {
     packetType: joinRandomRoomHandler,
     protoType: 'C2SJoinRandomRoomRequest',
-  }
+  },
+  [HANDLER_IDS.LEAVE_ROOM_REQUEST]: {
+    packetType: leaveRoomHandler,
+    protoType: 'C2SLeaveRoomRequest',
+  },
 };
 /**
  * 패킷타입에 맞는 핸들러로 분배해주는 함수
@@ -39,8 +44,6 @@ const packetTypes = {
  */
 export const handler = async (socket, packetType, payload) => {
   try {
-    console.log('PacketType: ', packetType);
-    console.log('Payload: ', payload);
     const handlerFunction = packetTypes[packetType].packetType;
     if (!handlerFunction) {
       throw new CustomError(ErrorCodes.UNKNOWN_HANDLER_ID, `핸들러를 찾을 수 없습니다`);

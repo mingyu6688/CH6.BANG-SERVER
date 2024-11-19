@@ -1,8 +1,9 @@
+import { removeRoomSession } from '../../session/room.session.js';
 import { getUserById } from '../../session/user.session.js';
 import IntervalManager from '../managers/interval.manager.js';
 const LOBBY_MAX_PLAYERS = 50;
 
-// 만들긴 했는데 게임적으로는 채널같은 느낌으로 구현된 듯? 1채널, 2채널? 이번 프로젝트에선 굳이 필요하진 않은거 같은데 이미 이렇게 짜버려서 ㅎㅎ;
+// 채널같은 느낌?
 class Lobby {
   constructor(id) {
     this.id = id;
@@ -39,6 +40,11 @@ class Lobby {
   // 지금은 lobby에서 제거하는 방식으로 구현해놨음.
   removeUser(userId) {
     this.users = this.users.filter((user) => user.id !== userId);
+  }
+
+  removeRoom(roomId) {
+    this.rooms = this.rooms.filter((room) => room.id !== roomId);
+    removeRoomSession(roomId);
   }
 }
 

@@ -1,7 +1,10 @@
 import HANDLER_IDS from '../../constants/handlerIds.js';
 import { roomStateType } from '../../init/loadProtos.js';
 import { getUserById } from '../../session/user.session.js';
-import { roomJoinNotifcation } from '../../utils/notification/room.notification.js';
+import {
+  leaveRoomNotification,
+  roomJoinNotifcation,
+} from '../../utils/notification/room.notification.js';
 import { createResponse } from '../../utils/response/createResponse.js';
 
 class Room {
@@ -19,6 +22,14 @@ class Room {
 
   joinNotificate(userId) {
     roomJoinNotifcation(this.id, userId);
+  }
+
+  removeUser(userId) {
+    this.users = this.users.filter((user) => user.id !== userId);
+  }
+
+  leaveNotification(userId) {
+    leaveRoomNotification(this.id, userId);
   }
 }
 

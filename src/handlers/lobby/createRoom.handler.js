@@ -10,7 +10,7 @@ const createRoomHandler = async ({ socket, payload }) => {
 
     const user = getUserBySocket(socket);
     const userId = user.id;
-    const ownerId = user.nickname;
+    const ownerId = user.id;
 
     //현재 유저가 있는 로비를 가져와야한다.
     // const lobbySessions = getLobbySessions();
