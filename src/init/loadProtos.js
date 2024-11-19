@@ -29,6 +29,7 @@ const protoFiles = getAllProtoFiles(protoFolder);
 
 const protoMessages = {};
 export let roomStateType = null;
+export let roleType = null;
 
 export const loadProtos = async () => {
   try {
@@ -54,6 +55,7 @@ export const loadProtos = async () => {
     }
 
     roomStateType = root.lookupEnum('packets.RoomStateType').values;
+    roleType = root.lookupEnum('packets.RoleType').values;
     // console.log(roomStateType.WAIT);
     
     console.log(`프로토 타입 로드에 끝났습니다.`);
